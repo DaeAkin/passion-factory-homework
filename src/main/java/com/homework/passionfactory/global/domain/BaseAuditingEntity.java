@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class BaseAuditingEntity {
 
     @CreatedDate
-    public LocalDateTime created_at;
+    private LocalDateTime created_at;
 
     @LastModifiedDate
     private LocalDateTime updated_at;

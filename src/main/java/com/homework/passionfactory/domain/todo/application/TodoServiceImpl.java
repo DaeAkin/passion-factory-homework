@@ -3,6 +3,7 @@ package com.homework.passionfactory.domain.todo.application;
 import com.homework.passionfactory.domain.todo.dao.TodoRepository;
 import com.homework.passionfactory.domain.todo.domain.Todo;
 import com.homework.passionfactory.domain.todo.dto.TodoSaveRequest;
+import com.homework.passionfactory.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -19,30 +20,31 @@ public class TodoServiceImpl implements TodoService{
     private final TodoRepository todoRepository;
 
     @Override
-    public Optional<Todo> findTodo(Long todoId) {
+    public Optional<Todo> findTodo(Integer todoId) {
         return todoRepository.findById(todoId);
     }
 
     @Override
-    public Optional<Todo> updateTodo(Long todoId, TodoSaveRequest todoSaveRequest) {
+    public Optional<Todo> updateTodo(Integer todoId, TodoSaveRequest todoSaveRequest) {
         Optional<Todo> todo = todoRepository.findById(todoId);
         if(!todo.isPresent())
             return Optional.empty();
         Todo findTodo = todo.get();
         findTodo.updateTodo(todoSaveRequest);
+//        todoRepository.save(findTodo);
         return Optional.of(todoRepository.save(findTodo));
     }
 
     @Override
-    public Optional<Todo> insertTodo(TodoSaveRequest todoSaveRequest) {
-        Todo saveTodo = todoSaveRequest.toEntity();
+    public Optional<Todo> insertTodo(TodoSaveRequest todoSaveRequest, User user) {
+        Todo saveTodo = todoSaveRequest.toEntity(user);
         return Optional.of(todoRepository.save(saveTodo));
     }
 
 
 
     @Override
-    public void deleteTodo(Long todoId) {
+    public void deleteTodo(Integer todoId) {
         Optional<Todo> todo = todoRepository.findById(todoId);
         if(!todo.isPresent()) {
             // if todo is not exist, do someting or throw Exception

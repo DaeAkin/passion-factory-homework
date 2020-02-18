@@ -5,6 +5,7 @@ import com.homework.passionfactory.domain.user.domain.User;
 import com.homework.passionfactory.global.domain.BaseAuditingEntity;
 
 import javax.persistence.*;
+
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,14 +25,14 @@ import javax.validation.constraints.Min;
 @Entity
 public class Todo extends BaseAuditingEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(0)
     @Max(10000000)
     private Integer id;
     @Setter
     private String name;
     private Boolean completed;
-
     private String completed_at;
 
     @ManyToOne
@@ -42,6 +43,7 @@ public class Todo extends BaseAuditingEntity {
         this.name = todoSaveRequest.getName();
         this.completed = todoSaveRequest.getCompleted();
     }
+
 
 
 }
