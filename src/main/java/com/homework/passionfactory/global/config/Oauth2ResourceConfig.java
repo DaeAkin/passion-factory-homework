@@ -25,6 +25,7 @@ public class Oauth2ResourceConfig extends ResourceServerConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/todos").permitAll()
                 .antMatchers(HttpMethod.GET, "/todos/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/todos/upload").permitAll()
                 .anyRequest().access("#oauth2.hasScope('USER')");
     }
 }

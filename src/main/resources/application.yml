@@ -1,5 +1,5 @@
 ---
-#resource-path: ${user.home}${file.separator}outstagram-resource-test${file.separator}
+resource-path: ${user.home}${file.separator}passion${file.separator}
 spring:
   profiles: default
   datasource:
@@ -12,9 +12,6 @@ spring:
       ddl-auto: update
     show-sql: true
 
-#signing :
-#  #sha256(outstagram)
-#  key : F79FEA4B2DFB766FE645F05853069FF883271ABD1BCE56C46CEDCA1F9723593C
 
 
 logging:
@@ -22,6 +19,7 @@ logging:
     passionfactory : debug
 
 ---
+resource-path: ${user.home}${file.separator}passion${file.separator}
 spring:
   profiles: dev
   datasource:
@@ -34,10 +32,6 @@ spring:
       ddl-auto: update
     show-sql: true
 
-
-#signing :
-#  #sha256(outstagram)
-#  key : F79FEA4B2DFB766FE645F05853069FF883271ABD1BCE56C46CEDCA1F9723593C
 
 
 logging:

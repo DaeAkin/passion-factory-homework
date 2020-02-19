@@ -12,7 +12,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.core.Authentication;
 
 import javax.validation.constraints.Max;
@@ -110,5 +112,15 @@ public class TodoApiTests extends IntegrationTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody().size()).isEqualTo(5);
 
+    }
+
+    @Test
+    public void 이미지_업로드_테스트() {
+        //given
+        MockMultipartFile imageFile = new MockMultipartFile("file", "test.jpg", MediaType.IMAGE_JPEG_VALUE, "testImage".getBytes());
+        //when
+        todoApi.uploadImage(imageFile);
+        //then
+        //...
     }
 }

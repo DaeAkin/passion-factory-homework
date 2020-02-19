@@ -5,6 +5,7 @@ import com.homework.passionfactory.domain.todo.dto.TodoSaveRequest;
 import com.homework.passionfactory.domain.user.domain.User;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -22,5 +23,6 @@ public interface TodoService {
     void deleteTodo(Integer todoId);
     @Transactional
     Optional<List<Todo>> findAllTodos(Pageable pageable);
-
+    @Transactional
+    void uploadImage(MultipartFile multipartFile);
 }

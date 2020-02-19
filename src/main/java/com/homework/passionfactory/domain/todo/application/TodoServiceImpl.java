@@ -4,11 +4,14 @@ import com.homework.passionfactory.domain.todo.dao.TodoRepository;
 import com.homework.passionfactory.domain.todo.domain.Todo;
 import com.homework.passionfactory.domain.todo.dto.TodoSaveRequest;
 import com.homework.passionfactory.domain.user.domain.User;
+import com.homework.passionfactory.global.utils.MediaUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +21,9 @@ import java.util.Optional;
 @Service
 public class TodoServiceImpl implements TodoService{
     private final TodoRepository todoRepository;
+
+    @Value("${resource-path}")
+    private String resourcePath;
 
     @Override
     public Optional<Todo> findTodo(Integer todoId) {
@@ -31,7 +37,6 @@ public class TodoServiceImpl implements TodoService{
             return Optional.empty();
         Todo findTodo = todo.get();
         findTodo.updateTodo(todoSaveRequest);
-//        todoRepository.save(findTodo);
         return Optional.of(todoRepository.save(findTodo));
     }
 
@@ -56,5 +61,10 @@ public class TodoServiceImpl implements TodoService{
     public Optional<List<Todo>> findAllTodos(Pageable pageable) {
         Page<Todo> allTodo = todoRepository.findAll(pageable);
         return Optional.of(allTodo.getContent());
+    }
+
+    @Override
+    public void uploadImage(MultipartFile multipartFile) {
+        MediaUtil.saveImageFile(multipartFile,resourcePath,"");
     }
 }

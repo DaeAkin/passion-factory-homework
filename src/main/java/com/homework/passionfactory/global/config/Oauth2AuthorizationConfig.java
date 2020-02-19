@@ -1,4 +1,5 @@
 package com.homework.passionfactory.global.config;
+
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +14,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-
-import javax.sql.DataSource;
 
 
 @Configuration
@@ -25,7 +23,6 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     @Qualifier("userService")
     private UserDetailsService userService;
 
-    private DataSource dataSource;
 
     @Qualifier("userPasswordEncoder")
     private PasswordEncoder userPasswordEncoder;

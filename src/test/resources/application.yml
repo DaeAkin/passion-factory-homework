@@ -1,4 +1,4 @@
-#resource-path: ${user.home}${file.separator}outstagram-resource-test${file.separator}
+resource-path: ${user.home}${file.separator}passion${file.separator}
 spring:
   profiles: test
   datasource:
@@ -7,11 +7,3 @@ spring:
     username: testAdmin
     password: testPassword
 
-#signing :
-#  #sha256(outstagram)
-#  key : F79FEA4B2DFB766FE645F05853069FF883271ABD1BCE56C46CEDCA1F9723593C
-
-
-#logging:
-#  level:
-#    outstagram : debug
