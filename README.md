@@ -26,7 +26,6 @@ Get 메소드 제외한 나머지 메소드는 권한이 필요하기 때문에 
 
 > http://127.0.0.1:8080/oauth/token
 
-![](./docs/image1.png)
 
 username : clientid // password : pwd
 
